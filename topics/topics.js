@@ -260,3 +260,21 @@ function initAsideDock() {
 }
 
 initAsideDock();
+
+
+/* Gardari legal UI bootstrap: shared across public Blog pages. */
+(function () {
+  var origin = document.currentScript;
+  if (!origin || !origin.src || document.querySelector('script[data-gardari-legal-bootstrap]')) return;
+  var root = new URL('../', origin.src);
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = new URL('gardari-legal.css?v=1.0.0', root).href;
+  document.head.append(link);
+  var script = document.createElement('script');
+  script.src = new URL('gardari-legal.js?v=1.0.0', root).href;
+  script.defer = true;
+  script.dataset.gardariSite = 'blog';
+  script.dataset.gardariLegalBootstrap = '1';
+  document.head.append(script);
+})();
